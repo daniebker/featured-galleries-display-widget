@@ -1,0 +1,11 @@
+{
+  "name": "featured-galleries-display-widget",
+  "version": "0.0.1",
+  "description": "A simple widget to add a featured gallery to a page",
+  "main": "index.js",
+  "author": "Daniel Baker <dan@daniebker.co.uk>",
+  "license": "MIT",
+  "dependencies": {
+    "lightbox2": "^2.9.0"
+  }
+}
