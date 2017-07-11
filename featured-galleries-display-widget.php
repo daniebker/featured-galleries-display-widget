@@ -98,10 +98,10 @@ class featured_galleries_display_widget extends WP_Widget {
 	
 function enqueue_scripts()
 {
-    wp_register_script( 'light-box2', plugins_url( 'node_modules/lightbox2/src/js/lightbox.js', __FILE__ ), array( 'jquery', 'jquery-ui-core' ), '20120208', true );
+    wp_register_script( 'light-box2', plugins_url( 'js/lightbox.js', __FILE__ ), array( 'jquery', 'jquery-ui-core' ), '20120208', true );
     
     wp_enqueue_script( 'light-box2' );
-    wp_enqueue_style('lightbox_css', plugins_url( 'node_modules/lightbox2/src/css/lightbox.css', __FILE__ ) );
+    wp_enqueue_style('lightbox_css', plugins_url( 'css/lightbox.css', __FILE__ ) );
 
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_scripts' );
