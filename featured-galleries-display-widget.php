@@ -57,11 +57,11 @@ class featured_galleries_display_widget extends WP_Widget {
             if(is_plugin_active('featured-galleries/featured-galleries.php')){
                 $galleryArray = get_post_gallery_ids($post_id);
 
-                echo ' <!-- GALLERY --> <div class="row">';
+                echo ' <!-- GALLERY --> <div class="' . $instance['galleryClass'] . '">';
                 foreach ($galleryArray as $id) {
-                    echo '<div class="col-lg-2 col-sm-4 col-xs-6">';
+                    echo '<div class="' . $instance['imageWrapperClass'] . '">';
                     echo '<a href="' . wp_get_attachment_url( $id ) . '" data-lightbox="gallery">';
-                    echo '<img src="'. wp_get_attachment_thumb_url( $id ) . '" class="thumbnail img-responsive"></a></div>';
+                    echo '<img src="'. wp_get_attachment_thumb_url( $id ) . '" class="' . $instance['imageClass'] . '"></a></div>';
                 }
                 echo '</div> <!-- END GALLERY -->';
 
@@ -76,8 +76,14 @@ class featured_galleries_display_widget extends WP_Widget {
       // Check values
         if( $instance) {
             $title = esc_attr($instance['title']);
+            $galleryClass = esc_attr($instance['galleryClass']);
+            $imageWrapperClass = esc_attr($instance['imageWrapperClass']);
+            $imageClass = esc_attr($instance['imageClass']);
         } else {
             $title = 'Gallery';
+            $galleryClass = 'row';
+            $imageWrapperClass = 'col-lg-2 col-sm-4 col-xs-6';
+            $imageClass = 'thumbnail img-responsive';
         }
         ?>
         
@@ -86,12 +92,29 @@ class featured_galleries_display_widget extends WP_Widget {
             <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
         </p>
 
+        <p>
+            <label for="<?php echo $this->get_field_id('galleryClass'); ?>"><?php _e('Gallery Class', 'wp_widget_plugin'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('galleryClass'); ?>" name="<?php echo $this->get_field_name('galleryClass'); ?>" type="text" value="<?php echo $galleryClass; ?>" />
+        </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('imageWrapperClass'); ?>"><?php _e('Image Wrapper Class', 'wp_widget_plugin'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('imageWrapperClass'); ?>" name="<?php echo $this->get_field_name('imageWrapperClass'); ?>" type="text" value="<?php echo $imageWrapperClass; ?>" />
+        </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('imageClass'); ?>"><?php _e('Image Class', 'wp_widget_plugin'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('imageClass'); ?>" name="<?php echo $this->get_field_name('imageClass'); ?>" type="text" value="<?php echo $imageClass; ?>" />
+        </p>
        <?php
     }
         
     public function update( $new_instance, $old_instance ) {
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
+        $instance['galleryClass'] = strip_tags($new_instance['galleryClass']);
+        $instance['imageWrapperClass'] = strip_tags($new_instance['imageWrapperClass']);
+        $instance['imageClass'] = strip_tags($new_instance['imageClass']);
         return $instance;
     }
 } 
