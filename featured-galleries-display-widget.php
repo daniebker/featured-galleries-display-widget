@@ -3,7 +3,7 @@
 Plugin Name: Featured Galleries Display Widget
 Plugin URI: 
 Description: A simple widget for displaying featured galleries.
-Version: 0.2
+Version: 0.1.0
 Author: daniel baker
 Author URI: http://daniebker.co.uk
 License: MIT
